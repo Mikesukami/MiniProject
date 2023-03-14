@@ -1,0 +1,34 @@
+{
+    "s02": {
+        "password": "6510210516",
+        "role": "Employee",
+        "StaffId": "s02",
+        "name": "Patiparn Lekmard",
+        "salary": 5000,
+        "username": "bravo"
+    },
+    "s01": {
+        "password": "iloveapple",
+        "role": "Manager",
+        "StaffId": "s01",
+        "name": "Pattarawut Saikhwan",
+        "salary": 10000000,
+        "username": "kevin1"
+    },
+    "s04": {
+        "password": "6510210539",
+        "role": "Employee",
+        "StaffId": "s04",
+        "name": "Penpatch Rattanawong",
+        "salary": 2500,
+        "username": "bruno"
+    },
+    "s03": {
+        "password": "123456",
+        "role": "Employee",
+        "StaffId": "s03",
+        "name": "Adithep Saengthong",
+        "salary": 15000,
+        "username": "fiw01"
+    }
+}

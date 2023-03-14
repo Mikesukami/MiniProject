@@ -1,0 +1,52 @@
+{
+    "m04": {
+        "MenuName": "KapaoSeafood",
+        "MenuID": "m04",
+        "MenuPrice": 60
+    },
+    "m03": {
+        "MenuName": "KapaoChicken",
+        "MenuID": "m03",
+        "MenuPrice": 50
+    },
+    "m06": {
+        "MenuName": "OmeletChicken",
+        "MenuID": "m06",
+        "MenuPrice": 30
+    },
+    "m05": {
+        "MenuName": "OmeletBeef",
+        "MenuID": "m05",
+        "MenuPrice": 40
+    },
+    "m08": {
+        "MenuName": "OmeletPork",
+        "MenuID": "m08",
+        "MenuPrice": 50
+    },
+    "m07": {
+        "MenuName": "OmeletSeafood",
+        "MenuID": "m07",
+        "MenuPrice": 50
+    },
+    "m09": {
+        "MenuName": "Padthai",
+        "MenuID": "m09",
+        "MenuPrice": 40
+    },
+    "m10": {
+        "MenuName": "GrillPork",
+        "MenuID": "m10",
+        "MenuPrice": 150
+    },
+    "m02": {
+        "MenuName": "KapaoPork",
+        "MenuID": "m02",
+        "MenuPrice": 50
+    },
+    "m01": {
+        "MenuName": "KapaoBeef",
+        "MenuID": "m01",
+        "MenuPrice": 50
+    }
+}
