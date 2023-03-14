@@ -27,7 +27,6 @@ public class callingP3A1 {
             System.out.print("\033[H\033[2J");
             System.out.flush();
 
-            System.out.println("Hello"); 
             System.out.println("");
             System.out.println("===================================");
             System.out.println("     Welcome to P3A1 Restaurant     ");
