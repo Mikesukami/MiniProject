@@ -23,6 +23,39 @@ public class person {
         
     }
 
+    public void viewMenu(){
+
+        // Read menu items from menu.json file
+        JSONParser parser = new JSONParser();
+        try {
+            // Parse the JSON file
+            JSONArray jsonArray = (JSONArray) parser.parse(new FileReader("menu.json"));
+
+            // Sort the menu items by "MenuID" as integers in ascending order
+            jsonArray.sort(new Comparator<JSONObject>() {
+                @Override
+                public int compare(JSONObject o1, JSONObject o2) {
+                    int menuId1 = Integer.parseInt((String) o1.get("MenuID"));
+                    int menuId2 = Integer.parseInt((String) o2.get("MenuID"));
+                    return Integer.compare(menuId1, menuId2);
+                }
+            });
+
+            // Display the sorted menu items
+            System.out.format("%-10s %-20s %-10s\n", "MenuID", "MenuName", "MenuPrice");
+            for (Object obj : jsonArray) {
+                JSONObject menu = (JSONObject) obj;
+                String menuId = (String) menu.get("MenuID");
+                String menuName = (String) menu.get("MenuName");
+                long menuPrice = (long) menu.get("MenuPrice");
+                System.out.format("%-10s %-20s %-10s\n", String.format("%02d", Integer.parseInt(menuId)), menuName, menuPrice);
+            }
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void productView() {
         // Clear the console screen
         System.out.print("\033[H\033[2J");

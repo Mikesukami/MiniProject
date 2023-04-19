@@ -1,0 +1,41 @@
+[
+  {
+    "Prices": [50, 60, 40],
+    "Order Taker": "Pattarawut Saikhwan",
+    "Total Price": 410,
+    "ReceiptID": 9,
+    "FoodMenu": ["m01", "m04", "m05"],
+    "Quantity": [5, 2, 1],
+    "Order Date": "18-04-2023 20:18:30",
+    "Change": 90.0,
+    "OrderID": 18,
+    "Cash": 500,
+    "FoodName": ["KapaoBeef", "KapaoSeafood", "OmeletBeef"]
+  },
+  {
+    "Prices": [50, 40, 150],
+    "Order Taker": "Patiparn Lekmard",
+    "Total Price": 1010,
+    "ReceiptID": 10,
+    "FoodMenu": ["m01", "m05", "m10"],
+    "Quantity": [5, 4, 4],
+    "Order Date": "18-04-2023 20:34:15",
+    "Change": 490.0,
+    "OrderID": 19,
+    "Cash": 1500,
+    "FoodName": ["KapaoBeef", "OmeletBeef", "GrillPork"]
+  },
+  {
+    "Prices": [50, 60],
+    "Order Taker": "Penpatch Rattanawong",
+    "Total Price": 370,
+    "ReceiptID": 11,
+    "FoodMenu": ["m02", "m04"],
+    "Quantity": [5, 2],
+    "Order Date": "18-04-2023 20:54:02",
+    "Change": 130.0,
+    "OrderID": 20,
+    "Cash": 500,
+    "FoodName": ["KapaoPork", "KapaoSeafood"]
+  }
+]

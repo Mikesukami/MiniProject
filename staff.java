@@ -24,9 +24,110 @@ public class staff extends person {
     protected String staffUsername;
     protected String staffPassword;
 
+    final static String food_order_file_name = "order_food.json";
+    final static String menu_file_name = "menu.json";
+    final static String receipt_file_name = "receipt.json";
+
     public staff() {
 
     }
+
+    //addMenu method into menu.json file
+    public void addMenu() {
+        // Read existing menu items from menu.json file
+        JSONParser parser = new JSONParser();
+        try {
+            JSONArray jsonArray = (JSONArray) parser.parse(new FileReader("menu.json"));
+
+            // Generate new MenuID based on size of existing menu items
+            int newMenuId = jsonArray.size() + 1;
+
+            // Read user input for MenuName and MenuPrice
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter MenuName: ");
+            String menuName = scanner.nextLine();
+            System.out.print("Enter MenuPrice: ");
+            long menuPrice = scanner.nextLong();
+            scanner.nextLine(); // Consume newline character
+
+            // Create new menu item as JSONObject
+            JSONObject newMenu = new JSONObject();
+            newMenu.put("MenuID", String.valueOf(newMenuId));
+            newMenu.put("MenuName", menuName);
+            newMenu.put("MenuPrice", menuPrice);
+
+            // Add new menu item to the JSONArray
+            jsonArray.add(newMenu);
+
+            // Write the updated JSONArray back to menu.json file
+            FileWriter fileWriter = new FileWriter("menu.json");
+            fileWriter.write(jsonArray.toJSONString());
+            fileWriter.flush();
+            fileWriter.close();
+
+            System.out.println("New menu item added successfully!");
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //deleteMenu
+    public void deleteMenu() {
+        try {
+            // Load menu.json file into JSONArray
+            JSONParser parser = new JSONParser();
+            JSONArray jsonArray = (JSONArray) parser.parse(new FileReader("menu.json"));
+    
+            // Prompt user for MenuID to delete
+
+            //show menu list form menu.json file
+            System.out.println("Menu List");
+            System.out.println("MenuID\tMenuName\tMenuPrice");
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JSONObject menu = (JSONObject) jsonArray.get(i);
+                String menuId = (String) menu.get("MenuID");
+                String menuName = (String) menu.get("MenuName");
+                long menuPrice = (long) menu.get("MenuPrice");
+                System.out.println(menuId + "\t" + menuName + "\t" + menuPrice);
+            }
+            System.out.println();
+
+            System.out.print("Enter MenuID to delete: ");
+            Scanner scanner = new Scanner(System.in);
+            String menuIdToDelete = scanner.nextLine();
+    
+            // Loop through the JSONArray to find the menu item with matching MenuID
+            boolean found = false;
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JSONObject menu = (JSONObject) jsonArray.get(i);
+                String menuId = (String) menu.get("MenuID");
+                if (menuId.equals(menuIdToDelete)) {
+                    // Remove the menu item from the JSONArray
+                    jsonArray.remove(i);
+                    found = true;
+                    break;
+                }
+            }
+    
+            if (found) {
+                // Write the updated JSONArray back to menu.json file
+                FileWriter fileWriter = new FileWriter("menu.json");
+                fileWriter.write(jsonArray.toJSONString());
+                fileWriter.flush();
+                fileWriter.close();
+    
+                System.out.println("Menu item with MenuID " + menuIdToDelete + " deleted successfully!");
+            } else {
+                System.out.println("Menu item with MenuID " + menuIdToDelete + " not found.");
+            }
+    
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+    }
+    
+
 
     // addProduct
     public void addProduct() {
@@ -269,6 +370,345 @@ public class staff extends person {
         System.out.println();
     }
 
+    // orderMenu new
+    public void order() {
+        ArrayList<String> Food_Menu = new ArrayList<>();
+        ArrayList<String> Food_Name = new ArrayList<>();
+        ArrayList<Integer> Prices = new ArrayList<>();
+        ArrayList<Integer> Qty = new ArrayList<>();
+        int total_price = 0;
+        float change = 0;
+        
+
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String orderDate = formatter.format(date);
+
+        Scanner food_input = new Scanner(System.in);
+
+        JSONParser parser = new JSONParser();
+
+        try {
+
+            FileReader menu_reader = new FileReader(menu_file_name);
+            JSONArray menu_Load = (JSONArray) parser.parse(menu_reader);
+
+            FileReader order_reader = new FileReader(food_order_file_name);
+            JSONArray order_Load = (JSONArray) parser.parse(order_reader);
+
+            FileReader receipt_reader = new FileReader(receipt_file_name);
+            JSONArray receipt_Load = (JSONArray) parser.parse(receipt_reader);
+
+            // add new order in this object to get value
+
+            JSONObject new_Order = new JSONObject();
+
+            // generate order id and add it to object in line 32
+            int order_id = order_Load.size() + 1;
+            new_Order.put("OrderID", order_id);
+
+            // System.out.print("Enter order number: ");
+            // int order_id = food_input.nextInt(); food_input.nextLine();
+            // new_Order.put("OrderID", order_id);
+
+            System.out.println(staffName);
+            System.out.println(staffUsername);
+            System.out.println("============================================");
+            System.out.println("\tMenuID\tMenuName\tMenuPrice");
+            System.out.println("============================================");
+            for (Object menu : menu_Load) {
+                JSONObject menulist = (JSONObject) menu;
+                System.out.print("\t" + menulist.get("MenuID") + "\t");
+                System.out.print(menulist.get("MenuName") + "\t");
+                System.out.print(menulist.get("MenuPrice") + "\n");
+            }
+
+            int sum = 0;
+
+            while (true) {
+
+                try {
+
+                    // System.out.println("\tMenuID\tMenuName\tMenuPrice");
+
+                    // for(Object menu : menu_Load) {
+                    // JSONObject menulist = (JSONObject) menu;
+                    // System.out.print("\t" + menulist.get("MenuID") + "\t");
+                    // System.out.print(menulist.get("MenuName") + "\t");
+                    // System.out.print(menulist.get("MenuPrice") + "\n");
+                    // }
+
+                    System.out.println();
+
+                    if (Food_Menu.size() == 0) {
+
+                    } else {
+                        System.out.println("\tMenuID\t  MenuName\tMenuPrice\tQty\tTotal");
+                    }
+
+                    for (int i = 0; i < Food_Menu.size(); i++) {
+                        System.out.print("\t " +
+                                Food_Menu.get(i).toString() + "\t " +
+                                Food_Name.get(i).toString() + "\t " +
+                                Prices.get(i).toString() + "\t " + " \t" +
+                                Qty.get(i).toString() + "\t ");
+                        sum = Prices.get(i) * Qty.get(i);
+                        System.out.println(sum);
+                    }
+                    System.out.println();
+
+                    System.out.print("Enter MenuID (Type 'clear' to clear orders ,'done' to finish or 'none' to cancel):");
+                    String food_Item = food_input.nextLine();
+                    if (food_Item.equals("done")) {
+
+                        // clear screen
+                        System.out.print("\033[H\033[2J");
+                        System.out.flush();
+
+                        break;
+
+                    } else if (food_Item.equals("clear")) {
+                        Food_Menu.clear();
+                        Food_Name.clear();
+                        Prices.clear();
+                        Qty.clear();
+                        System.out.print("Order clear successfully. \n");
+                    } else if(food_Item.equals("n")){
+                        System.out.print("Cancel order. \n");
+                    } 
+
+                    for (Object menuID : menu_Load) {
+                        JSONObject menu_list = (JSONObject) menuID;
+
+                        if (food_Item.equals(menu_list.get("MenuID").toString())) {
+                            Food_Menu.add(food_Item);
+                            Food_Name.add(menu_list.get("MenuName").toString());
+                            Integer price = Integer.parseInt(menu_list.get("MenuPrice").toString());
+                            // System.out.print(price);
+                            Prices.add(price);
+
+                            //enter quantity for menu name 
+                            System.out.print("Enter quantity  for " + menu_list.get("MenuName").toString() + ": ");
+                            // System.out.print("Enter quantity  for " + food_Item + ": ");
+                            int quantity = food_input.nextInt();
+                            food_input.nextLine();
+                            Qty.add(quantity);
+
+                        }
+
+                    }
+                    // Food_Menu.add(food_Item);
+
+                    // new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            System.out.println("--------------------------------------------------------");
+            System.out.println("\t\t\tOrder detail\n");
+            System.out.println("--------------------------------------------------------");
+            System.out.println("\tMenuID\t  MenuName\tMenuPrice\tQty\tTotal");
+            for (int i = 0; i < Food_Menu.size(); i++) {
+                System.out.print("\t " +
+                        Food_Menu.get(i).toString() + "\t " +
+                        Food_Name.get(i).toString() + "\t " +
+                        Prices.get(i).toString() + "\t " + " \t" +
+                        Qty.get(i).toString() + "\t ");
+                sum = Prices.get(i) * Qty.get(i);
+                total_price += sum;
+                System.out.println(sum);
+            }
+            System.out.println("----------------------------------------");
+            System.out.println("Total price: " + total_price);
+            System.out.println("----------------------------------------");
+
+            // confirm order by fill Y or N
+            System.out.print("Confirm order? (Y/N): ");
+            String confirm = food_input.nextLine();
+            if (confirm.equals("Y")) {
+
+                // payment
+                int cash = 0;
+                boolean isCash = false;
+
+                int tries = 0;
+
+                while (tries != 3) {
+                    System.out.print("Enter cash: ");
+                    cash = food_input.nextInt();
+                    food_input.nextLine();
+                    if (cash < total_price) {
+                        System.out.println("Cash is not enough. Please try again.");
+                        tries++;
+                    } else {
+                        isCash = true;
+                        break;
+                    }
+                }
+
+                if (tries == 3) {
+                    System.out.println("You have entered wrong cash 3 times. Please try again later.");
+                }
+
+                if (cash >= total_price) {
+                    System.out.println("Change: " + (cash - total_price));
+                }
+
+                JSONObject new_receipt = new JSONObject();
+                // generate receipt id and date time for order receipt
+                int receipt_id = receipt_Load.size() + 1;
+                new_receipt.put("ReceiptID", receipt_id);
+                new_receipt.put("OrderID", order_id);
+
+                if (isCash) {
+
+                    // clear screen
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
+
+
+
+                    System.out.println(staffId);
+
+                    System.out.println("============================================================");
+                    System.out.println("\t\t\tReceipt");
+                    System.out.println("============================================================");
+                    System.out.println("Receipt ID: " + receipt_id);
+                    System.out.println("Order ID: " + order_id);
+                    System.out.println("Order Date: " + orderDate);
+                    System.out.println("Order Taker:" + staffName);
+                    
+
+                    // print order detail
+                    System.out.println("------------------------------------------------------------");
+                    System.out.println("\t\t\tOrder detail");
+                    System.out.println("------------------------------------------------------------");
+                    System.out.println("\tMenuID\t  MenuName\tMenuPrice\tQty\tTotal");
+                    for (int i = 0; i < Food_Menu.size(); i++) {
+                        System.out.print("\t " +
+                                Food_Menu.get(i).toString() + "\t " +
+                                Food_Name.get(i).toString() + "\t " +
+                                Prices.get(i).toString() + "\t " + " \t" +
+                                Qty.get(i).toString() + "\t ");
+                        sum = Prices.get(i) * Qty.get(i);
+                        System.out.println(sum);
+                    }
+
+                    // print total price
+                    System.out.println("------------------------------------------------------------");
+                    System.out.println("Total price: " + total_price);
+                    System.out.println("------------------------------------------------------------");
+
+                    // print cash and change
+
+                    change = cash - total_price;
+
+                    System.out.println("Cash: " + cash);
+                    System.out.println("Change: " + change);
+                    System.out.println("============================================================");
+
+                    // add receipt to receipt json array
+
+                    System.out.println("Payment successful.");
+                }
+
+                // when done add food menu and price, add them to object
+                new_Order.put("FoodMenu", Food_Menu);
+                new_Order.put("FoodName", Food_Name);
+                new_Order.put("Prices", Prices);
+                new_Order.put("Quantity", Qty);
+
+                // put to receipt json array
+                new_receipt.put("FoodMenu", Food_Menu);
+                new_receipt.put("FoodName", Food_Name);
+                new_receipt.put("Prices", Prices);
+                new_receipt.put("Quantity", Qty);
+                new_receipt.put("Change", change);
+                new_receipt.put("Total Price", total_price);
+                new_receipt.put("Cash", cash);
+                new_receipt.put("Order Date", orderDate);
+                new_receipt.put("Order Taker", staffName);
+
+                //clear staffName 
+                //staffName = "";
+
+                // calculate price into total price
+                // for (int i = 0; i < Prices.size(); i++) {
+                // total_price += Prices.get(i) * Qty.get(i);
+                // // System.out.println("Summary for index " + i + ": " + total_price);
+                // }
+
+                // for(int price : Prices) { // take 'price' in array 'Prices' to calculate and
+                // get value in 'total_price'
+                // total_price += price;
+                // }
+
+                // add value of total_price in object
+                new_Order.put("Total Price", total_price);
+
+                // add object into order json array in line 22
+                order_Load.add(new_Order);
+
+                // add object into receipt json array in line 23
+                receipt_Load.add(new_receipt);
+
+                // write a file
+                FileWriter file = new FileWriter(food_order_file_name);
+                file.write(order_Load.toJSONString());
+                file.flush();
+                file.close();
+
+                // write a file
+                FileWriter file2 = new FileWriter(receipt_file_name);
+                file2.write(receipt_Load.toJSONString());
+                file2.flush();
+                file2.close();
+
+                System.out.println();
+                System.out.println("\t\t**Thank you for your order**");
+
+                Food_Menu.clear();
+                Food_Name.clear();
+                Prices.clear();
+                Qty.clear();
+
+                System.out.println();
+                System.out.println("Press enter to continue...");
+                try {
+                    System.in.read();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            } else if (confirm.equals("N")) {
+                System.out.println("Order canceled");
+
+                //delay 2 seconds
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                //clear
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+
+
+            } else {
+                System.out.println("Invalid input");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     // order menu
     public void orderMenu() {
         Scanner kb = new Scanner(System.in);
@@ -463,19 +903,19 @@ public class staff extends person {
                     System.out.print("\033[H\033[2J");
                     System.out.flush();
 
-                    readStaff getStaffName = new readStaff(username, password);
+                    // readStaff getStaffName = new readStaff(username, password);
                     // display the bill
                     System.out.println("====================================");
                     System.out.println("\t       Receipt");
                     System.out.println("====================================");
                     System.out.println("Order Date: " + orderDate);
-                    System.out.println("Order Taker:" + getStaffName.getName());
+                    // System.out.println("Order Taker:" + getStaffName.getName());
                     System.out.println("Menu ID: " + menuId);
                     System.out.println("Menu Name: " + menu.get("MenuName"));
                     System.out.println("Quantity: " + qty);
                     System.out.println("------------------------------------");
                     System.out.println("\tTotal Price: " + total);
-                    System.out.println("\tChange:  "  + (cash - total));
+                    System.out.println("\tChange:  " + (cash - total));
                     System.out.println("------------------------------------");
                     System.out.println("           THANK YOU !             ");
                     System.out.println("====================================");
@@ -520,6 +960,8 @@ public class staff extends person {
 
     }
 
+    //orderHistory method to 
+
     // order history
     public void orderHistory() {
 
@@ -533,7 +975,7 @@ public class staff extends person {
         List<JSONObject> orderList = new ArrayList<>();
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(new FileReader("order.json"));
+            Object obj = parser.parse(new FileReader("order_food.json"));
             JSONObject jsonObject = (JSONObject) obj;
             for (Object key : jsonObject.keySet()) {
                 String orderId = (String) key;

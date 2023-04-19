@@ -1,0 +1,146 @@
+[
+  {
+    "Prices": [150],
+    "Total Price": 150,
+    "FoodMenu": ["m10"],
+    "Quantity": [1],
+    "OrderID": 2,
+    "FoodName": ["GrillPork"]
+  },
+  {
+    "Prices": [50, 40],
+    "Total Price": 260,
+    "FoodMenu": ["m08", "m05"],
+    "Quantity": [2, 4],
+    "OrderID": 1,
+    "FoodName": ["OmeletPork", "OmeletBeef"]
+  },
+  {
+    "Prices": [50, 150, 50],
+    "Total Price": 1100,
+    "FoodMenu": ["m01", "m10", "m02"],
+    "Quantity": [5, 4, 5],
+    "OrderID": 5,
+    "FoodName": ["KapaoBeef", "GrillPork", "KapaoPork"]
+  },
+  {
+    "Prices": [150, 50],
+    "Total Price": 1700,
+    "FoodMenu": ["m10", "m01"],
+    "Quantity": [5, 2],
+    "OrderID": 6,
+    "FoodName": ["GrillPork", "KapaoBeef"]
+  },
+  {
+    "Prices": [50, 150],
+    "Total Price": 3500,
+    "FoodMenu": ["m01", "m10"],
+    "Quantity": [20, 5],
+    "OrderID": 7,
+    "FoodName": ["KapaoBeef", "GrillPork"]
+  },
+  {
+    "Prices": [150, 50],
+    "Total Price": 2000,
+    "FoodMenu": ["m10", "m02"],
+    "Quantity": [5, 5],
+    "OrderID": 8,
+    "FoodName": ["GrillPork", "KapaoPork"]
+  },
+  {
+    "Prices": [50, 40, 150, 60],
+    "Total Price": 6530,
+    "FoodMenu": ["m01", "m05", "m10", "m04"],
+    "Quantity": [50, 4, 25, 2],
+    "OrderID": 9,
+    "FoodName": ["KapaoBeef", "OmeletBeef", "GrillPork", "KapaoSeafood"]
+  },
+  {
+    "Prices": [50, 50, 150, 40],
+    "Total Price": 1210,
+    "FoodMenu": ["m01", "m02", "m10", "m05"],
+    "Quantity": [5, 4, 4, 4],
+    "OrderID": 10,
+    "FoodName": ["KapaoBeef", "KapaoPork", "GrillPork", "OmeletBeef"]
+  },
+  {
+    "Prices": [50, 150, 40],
+    "Total Price": 440,
+    "FoodMenu": ["m01", "m10", "m05"],
+    "Quantity": [5, 1, 1],
+    "OrderID": 11,
+    "FoodName": ["KapaoBeef", "GrillPork", "OmeletBeef"]
+  },
+  {
+    "Prices": [50, 40],
+    "Total Price": 260,
+    "FoodMenu": ["m01", "m05"],
+    "Quantity": [2, 4],
+    "OrderID": 12,
+    "FoodName": ["KapaoBeef", "OmeletBeef"]
+  },
+  {
+    "Prices": [50, 150, 50],
+    "Total Price": 1200,
+    "FoodMenu": ["m01", "m10", "m03"],
+    "Quantity": [5, 5, 4],
+    "OrderID": 13,
+    "FoodName": ["KapaoBeef", "GrillPork", "KapaoChicken"]
+  },
+  {
+    "Prices": [50, 50],
+    "Total Price": 450,
+    "FoodMenu": ["m01", "m02"],
+    "Quantity": [5, 4],
+    "OrderID": 14,
+    "FoodName": ["KapaoBeef", "KapaoPork"]
+  },
+  {
+    "Prices": [50, 40],
+    "Total Price": 330,
+    "FoodMenu": ["m01", "m05"],
+    "Quantity": [5, 2],
+    "OrderID": 15,
+    "FoodName": ["KapaoBeef", "OmeletBeef"]
+  },
+  {
+    "Prices": [50, 50],
+    "Total Price": 450,
+    "FoodMenu": ["m01", "m02"],
+    "Quantity": [5, 4],
+    "OrderID": 16,
+    "FoodName": ["KapaoBeef", "KapaoPork"]
+  },
+  {
+    "Prices": [50, 50],
+    "Total Price": 300,
+    "FoodMenu": ["m01", "m02"],
+    "Quantity": [2, 4],
+    "OrderID": 17,
+    "FoodName": ["KapaoBeef", "KapaoPork"]
+  },
+  {
+    "Prices": [50, 60, 40],
+    "Total Price": 410,
+    "FoodMenu": ["m01", "m04", "m05"],
+    "Quantity": [5, 2, 1],
+    "OrderID": 18,
+    "FoodName": ["KapaoBeef", "KapaoSeafood", "OmeletBeef"]
+  },
+  {
+    "Prices": [50, 40, 150],
+    "Total Price": 1010,
+    "FoodMenu": ["m01", "m05", "m10"],
+    "Quantity": [5, 4, 4],
+    "OrderID": 19,
+    "FoodName": ["KapaoBeef", "OmeletBeef", "GrillPork"]
+  },
+  {
+    "Prices": [50, 60],
+    "Total Price": 370,
+    "FoodMenu": ["m02", "m04"],
+    "Quantity": [5, 2],
+    "OrderID": 20,
+    "FoodName": ["KapaoPork", "KapaoSeafood"]
+  }
+]

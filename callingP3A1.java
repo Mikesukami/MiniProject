@@ -124,7 +124,7 @@ public class callingP3A1 {
 
                                             System.out.println("View Product");
                                             person view = new person();
-                                            view.productView();
+                                            view.viewMenu();
 
                                             System.out.println("Press enter to continue...");
                                             try {
@@ -141,7 +141,9 @@ public class callingP3A1 {
                                         } else if (ans2 == 2) {
                                             System.out.println("Order");
                                             staff order = new staff();
-                                            order.orderMenu();
+                                            order.setStaffName(name);
+                                            order.order();
+
                                         } else if (ans2 == 3) {
                                             System.out.println("Report");
                                             manager MgReport = new manager();
@@ -149,10 +151,10 @@ public class callingP3A1 {
                                         } else if (ans2 == 4) {
                                             System.out.println("Add Menu");
                                             staff add = new staff();
-                                            add.addProduct();
+                                            add.addMenu();
                                         } else if (ans2 == 5) {
                                             staff delete = new staff();
-                                            delete.deleteProduct();
+                                            delete.deleteMenu();
                                         } else if (ans2 == 6) {
                                             System.out.println("Add Staff");
                                             manager addStaff = new manager();
@@ -215,18 +217,31 @@ public class callingP3A1 {
                                         if (ans2 == 1) {
                                             System.out.println("View Product");
                                             person view = new person();
-                                            view.productView();
+                                            view.viewMenu();
+
+                                            System.out.println("Press enter to continue...");
+                                            try {
+                                                System.in.read();
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                            // clear screen
+                                            System.out.print("\033[H\033[2J");
+                                            System.out.flush();
+
                                         } else if (ans2 == 2) {
                                             System.out.println("Order");
                                             staff order = new staff();
-                                            order.orderMenu();
+                                            order.setStaffName(name);
+                                            order.order();
                                         } else if (ans2 == 3) {
                                             System.out.println("Add Menu");
                                             staff add = new staff();
-                                            add.addProduct();
+                                            add.addMenu();
                                         } else if (ans2 == 4) {
                                             staff delete = new staff();
-                                            delete.deleteProduct();
+                                            delete.deleteMenu();
                                         } else if (ans2 == 5) {
                                             staff orderHistory = new staff();
                                             orderHistory.orderHistory();
